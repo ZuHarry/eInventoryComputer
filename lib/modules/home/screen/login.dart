@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:einventorycomputer/modules/home/screen/register.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,16 +32,30 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  bool _obscurePassword = true;
+
   void _login() {
-    final username = _usernameController.text;
-    final password = _passwordController.text;
-    // TODO: Add authentication logic here
-    print('Username: $username\nPassword: $password');
+    final username = _usernameController.text.trim();
+    final password = _passwordController.text.trim();
+
+    if (username.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter both username and password')),
+      );
+      return;
+    }
+
+    // Simulated login success
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const HomePage()),
+    );
   }
 
   void _forgotPassword() {
-    // TODO: Navigate to Forgot Password screen or show dialog
-    print('Forgot Password tapped');
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Forgot Password clicked')),
+    );
   }
 
   @override
@@ -48,12 +63,11 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Image.asset('assets/images/background.png'),
                 const Icon(Icons.lock_outline, size: 100, color: Colors.indigo),
                 const SizedBox(height: 20),
                 const Text(
@@ -72,11 +86,21 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 20),
                 TextField(
                   controller: _passwordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
+                  obscureText: _obscurePassword,
+                  decoration: InputDecoration(
                     labelText: 'Password',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.lock),
+                    border: const OutlineInputBorder(),
+                    prefixIcon: const Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscurePassword = !_obscurePassword;
+                        });
+                      },
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -98,9 +122,48 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   child: const Text('Login'),
                 ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Don\'t have an account? '),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const RegisterPage()),
+                        );
+                      },
+                      child: const Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            color: Colors.indigo,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                    )
+                  ],
+                ),
               ],
             ),
           ),
+        
+      ),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Home Page")),
+      body: const Center(
+        child: Text(
+          "Login Successful!",
+          style: TextStyle(fontSize: 24),
         ),
       ),
     );
