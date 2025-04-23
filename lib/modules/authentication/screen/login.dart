@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:einventorycomputer/modules/home/screen/register.dart';
+import 'package:einventorycomputer/modules/authentication/screen/register.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,10 +46,10 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     // Simulated login success
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const HomePage()),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => const HomePage()),
+    // );
   }
 
   void _forgotPassword() {
@@ -62,12 +62,12 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
+      body: Padding(
+          padding: const EdgeInsets.all(24.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/images/background.png'),
                 const Icon(Icons.lock_outline, size: 100, color: Colors.indigo),
                 const SizedBox(height: 20),
                 const Text(
@@ -153,19 +153,19 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+// class HomePage extends StatelessWidget {
+//   const HomePage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Home Page")),
-      body: const Center(
-        child: Text(
-          "Login Successful!",
-          style: TextStyle(fontSize: 24),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: const Text("Home Page")),
+//       body: const Center(
+//         child: Text(
+//           "Login Successful!",
+//           style: TextStyle(fontSize: 24),
+//         ),
+//       ),
+//     );
+//   }
+// }

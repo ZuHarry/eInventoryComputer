@@ -1,4 +1,5 @@
-import 'package:einventorycomputer/modules/home/screen/login.dart';
+import 'package:einventorycomputer/modules/authentication/screen/login.dart';
+import 'package:einventorycomputer/modules/home/screen/screen.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
  
       //home: BottomNavBar(userId: 4, userType: 'Rider'),
       //home: ScannerScreen(),
-      home: const LoginPage(),
+      //home: const LoginPage(),
+      home: ScreenPage(),
 
       // home: RevenueScreen(),
 
