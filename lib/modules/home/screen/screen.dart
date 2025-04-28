@@ -13,14 +13,6 @@ class ScreenPage extends StatefulWidget {
 class _ScreenPageState extends State<ScreenPage> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = [
-    HomePage(),
-    InventoryPage(),
-    SettingsPage(),
-    AccountPage(),
-    LoginPage(),
-  ];
-
   final List<String> _titles = [
     "Home",
     "Inventory",
@@ -30,14 +22,24 @@ class _ScreenPageState extends State<ScreenPage> {
   ];
 
   void _onSelect(int index) {
-    setState(() {
-      _selectedIndex = index;
-      Navigator.pop(context); // Close the drawer
-    });
+    if (_selectedIndex != index) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
+    Navigator.pop(context); // Close the drawer
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _pages = [
+      HomePage(onAddDevice: () => _onSelect(1)), // Navigate to Inventory
+      InventoryPage(),
+      SettingsPage(),
+      AccountPage(),
+      LoginPage(),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(_titles[_selectedIndex]),
@@ -47,31 +49,32 @@ class _ScreenPageState extends State<ScreenPage> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(color: Colors.blue),
-              child: Text("Menu", style: TextStyle(color: Colors.white, fontSize: 24)),
+              child: const Text("Menu",
+                  style: TextStyle(color: Colors.white, fontSize: 24)),
             ),
             ListTile(
-              title: Text("Home"),
-              leading: Icon(Icons.home),
+              title: const Text("Home"),
+              leading: const Icon(Icons.home),
               onTap: () => _onSelect(0),
             ),
             ListTile(
-              title: Text("Inventory"),
-              leading: Icon(Icons.inventory),
+              title: const Text("Inventory"),
+              leading: const Icon(Icons.inventory),
               onTap: () => _onSelect(1),
             ),
             ListTile(
-              title: Text("Settings"),
-              leading: Icon(Icons.settings),
+              title: const Text("Settings"),
+              leading: const Icon(Icons.settings),
               onTap: () => _onSelect(2),
             ),
             ListTile(
-              title: Text("Account"),
-              leading: Icon(Icons.person),
+              title: const Text("Account"),
+              leading: const Icon(Icons.person),
               onTap: () => _onSelect(3),
             ),
             ListTile(
-              title: Text("Login"),
-              leading: Icon(Icons.person),
+              title: const Text("Login"),
+              leading: const Icon(Icons.login),
               onTap: () => _onSelect(4),
             ),
           ],
