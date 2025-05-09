@@ -3,6 +3,7 @@ import 'package:einventorycomputer/modules/home/screen/home.dart';
 import 'package:einventorycomputer/modules/home/screen/inventory.dart';
 import 'package:einventorycomputer/modules/home/screen/settings.dart';
 import 'package:einventorycomputer/modules/home/screen/account.dart';
+import 'package:einventorycomputer/modules/home/screen/add_device.dart';
 import 'package:einventorycomputer/modules/authentication/screen/login.dart';
 
 class ScreenPage extends StatefulWidget {
@@ -16,6 +17,7 @@ class _ScreenPageState extends State<ScreenPage> {
   final List<String> _titles = [
     "Home",
     "Inventory",
+    "Add Device",
     "Settings",
     "Account",
     "Login",
@@ -35,6 +37,7 @@ class _ScreenPageState extends State<ScreenPage> {
     List<Widget> _pages = [
       HomePage(onAddDevice: () => _onSelect(1)), // Navigate to Inventory
       InventoryPage(),
+      AddDevicePage(),
       SettingsPage(),
       AccountPage(),
       LoginPage(),
@@ -63,19 +66,24 @@ class _ScreenPageState extends State<ScreenPage> {
               onTap: () => _onSelect(1),
             ),
             ListTile(
+              title: const Text("Add Device"),
+              leading: const Icon(Icons.inventory_2),
+              onTap: () => _onSelect(2),
+            ),
+            ListTile(
               title: const Text("Settings"),
               leading: const Icon(Icons.settings),
-              onTap: () => _onSelect(2),
+              onTap: () => _onSelect(3),
             ),
             ListTile(
               title: const Text("Account"),
               leading: const Icon(Icons.person),
-              onTap: () => _onSelect(3),
+              onTap: () => _onSelect(4),
             ),
             ListTile(
               title: const Text("Login"),
               leading: const Icon(Icons.login),
-              onTap: () => _onSelect(4),
+              onTap: () => _onSelect(5),
             ),
           ],
         ),
