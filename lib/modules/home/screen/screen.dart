@@ -35,7 +35,7 @@ class _ScreenPageState extends State<ScreenPage> {
   @override
   Widget build(BuildContext context) {
     List<Widget> _pages = [
-      HomePage(onAddDevice: () => _onSelect(1)), // Navigate to Inventory
+      HomePage(), // Navigate to Inventory
       InventoryPage(),
       AddDevicePage(),
       SettingsPage(),

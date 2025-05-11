@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:einventorycomputer/services/auth.dart';
+
 
 class HomePage extends StatelessWidget {
-  final VoidCallback onAddDevice;
+  // final VoidCallback onAddDevice;
 
-  const HomePage({super.key, required this.onAddDevice});
+  // const HomePage({super.key, required this.onAddDevice});
+  final AuthService _auth = AuthService();
 
   final List<Map<String, dynamic>> stats = const [
     {
@@ -102,9 +105,12 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                onPressed: onAddDevice,
+                onPressed: () async{
+                  await _auth.signOut();
+
+                },
                 child: const Text(
-                  'Add Device',
+                  'Log Out',
                   style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),

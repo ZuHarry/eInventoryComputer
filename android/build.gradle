@@ -1,7 +1,19 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.google.gms:google-services:4.4.0'  // or newer if available
+    }
+}
+
 allprojects {
     repositories {
         google()
-        mavenCentral()
+        jcenter()
     }
 }
 
@@ -18,8 +30,6 @@ tasks.register("clean", Delete) {
 }
 
 
-buildscript {
 
-}
 
 
