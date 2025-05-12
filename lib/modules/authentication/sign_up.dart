@@ -1,20 +1,21 @@
-import 'package:einventorycomputer/services/auth.dart';
+import 'package:einventorycomputer/modules/authentication/sign_in.dart';
 import 'package:flutter/material.dart';
-import 'package:einventorycomputer/modules/authentication/sign_up.dart';
+import 'package:einventorycomputer/services/auth.dart';
 
-class SignIn extends StatefulWidget {
+class SignUp extends StatefulWidget {
 
   final Function toggleView;
-  SignIn({required this.toggleView});
+  SignUp({required this.toggleView});
 
   @override
-  _SignInState createState() => _SignInState();
+  _SignUpState createState() => _SignUpState();
+
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
 
   final AuthService _auth = AuthService();
-
+  
   // text field state
   String email = '';
   String password = '';
@@ -26,7 +27,7 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
-        title: Text('Sign In to e-Inventory'),
+        title: Text('Sign Up to e-Inventory'),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -48,7 +49,7 @@ class _SignInState extends State<SignIn> {
               ),
               ElevatedButton(
                 child: Text(
-                  'Sign In',
+                  'Register',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {
@@ -59,7 +60,7 @@ class _SignInState extends State<SignIn> {
               SizedBox(height: 20.0),
               ElevatedButton(
                 child: Text(
-                  'Sign Up',
+                  'Sign In',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
@@ -72,5 +73,4 @@ class _SignInState extends State<SignIn> {
       ),
     );
   }
-  
 }
